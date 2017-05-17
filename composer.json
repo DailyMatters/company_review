@@ -1,0 +1,7 @@
+{
+    "require": {
+        "silex/silex": "~2.0",
+        "phpunit/phpunit": "~6.1",
+		"php" : ">=5.6"
+    }
+}
