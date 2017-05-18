@@ -2,7 +2,6 @@
 
 use PHPUnit\Framework\TestCase;
 use CompanyReview\CompanyReview;
-require "./src/FileNotFoundException.php";
 
 class CompanyReviewTest extends TestCase {
 
@@ -13,9 +12,14 @@ class CompanyReviewTest extends TestCase {
 	}
 
 	public function testGetFileThrowsException(){
-		$this->expectException(FileNotFoundException::class);
+		$this->expectException(\Exception::class);
 		$file = "db.json";
 		$this->review->getData($file);
+	}
+
+	public function testDBFileExists(){
+		$path="./db/data.json";
+		$this->assertFileExists($path);
 	}
 
 }

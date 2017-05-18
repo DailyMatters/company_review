@@ -6,11 +6,8 @@ class CompanyReview{
 
 	public function getData($path){
 	
-		//$path = "../db/data.json";
-		//$file = file_get_contents($path);
-
-		if(file_get_contents($path) === false){
-			throw new FileNotFoundException;
+		if($file = @file_get_contents($path) === false){
+			throw new \Exception("File Not Found");
 		}
 		return $file;
 	}
