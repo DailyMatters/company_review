@@ -4,12 +4,12 @@ namespace CompanyReview;
 
 class CompanyReview{
 
-	public function getData(){
+	public function getData($path){
 	
-		$path = "../db/data.json";
-		$file = file_get_contents($path);
+		//$path = "../db/data.json";
+		//$file = file_get_contents($path);
 
-		if($file === false){
+		if(file_get_contents($path) === false){
 			throw new FileNotFoundException;
 		}
 		return $file;
