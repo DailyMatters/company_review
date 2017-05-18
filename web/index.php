@@ -11,8 +11,8 @@ $app['companyReview'] = function($app) {
 };
 
 
-$app->get('/file', function() use ($app){
-	$file = $app['companyReview']->getData();
+$app->get('/avgRatings', function() use ($app){
+	$file = $app['companyReview']->getCompaniesAvrRatings();
 	return new Response($file);
 });
 
