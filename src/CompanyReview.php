@@ -43,6 +43,14 @@ class CompanyReview{
 
 	}
 
+	public function getArrayReviewers($company){
+		
+		foreach($company['reviews'] as $review){
+			$reviewers[] = $review['user'];
+		}
+		return $reviewers;
+	}
+
 	public function getCompanyAverageRatings($ratings){
 
 		$total=count($ratings);
@@ -85,6 +93,45 @@ class CompanyReview{
 
 	public function addNewReview($review){
 		return json_encode($review);
+	}
+
+	public function getCompanyReviewers($companySlug){
+		//get all users that reviewed the given company
+		$companies = $this->getAllCompanies();
+
+		foreach($companies as $company){
+			if($company['slug'] == $companySlug){
+			return $reviewers = $this->getArrayReviewers($company);
+			}
+		}
+		return 'Company Not Found.';
+	}
+
+	public function getCompaniesReviewedByUsers($users){
+
+		//get all companies reviewd by said users
+		foreach($users as $user){
+			$companies = $this->getAllCompanies();
+			foreach($companies as $company){
+				$reviewed = $this->checkUserReview($user, $company);
+
+				if($reviewed){
+					$companyList[] = $company['name'];
+				}
+			}
+		}
+		return $companyList;	
+
+	}
+
+	public function checkUserReview($user, $company){
+
+		foreach($company['reviews'] as $reviews){
+			if($reviews['user'] == $user){
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
