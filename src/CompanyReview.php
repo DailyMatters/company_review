@@ -95,6 +95,15 @@ class CompanyReview{
 		return json_encode($review);
 	}
 
+	public function getMoreReviews($companySlug){
+		
+		$reviewers = getCompanyReviewers($companySlug);
+		//don't forget to check if empty
+
+		$companies = getCompaniesReviewedByUsers($reviewers);
+		return $companies;
+	}
+
 	public function getCompanyReviewers($companySlug){
 		//get all users that reviewed the given company
 		$companies = $this->getAllCompanies();

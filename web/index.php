@@ -24,8 +24,12 @@ $app->get('/company/{string}', function($string) use ($app){
 $app->post('/review', function(Request $request) use ($app){
 
 	$review = $request->request->get("review");
-var_dump($review);die;
 	$string = $app['companyReview']->addNewReview($review);
+	return new Response($string);
+});
+
+$app->get('/moreReviews/{string}', function($string) use ($app){
+	$string = $app['companyReview']->getMoreReviews($string);
 	return new Response($string);
 });
 
