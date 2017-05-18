@@ -23,15 +23,10 @@ $app->get('/company/{string}', function($string) use ($app){
 
 $app->post('/review', function(Request $request) use ($app){
 
-	$review = $request->request->all();
+	$review = $request->request->get("review");
+var_dump($review);die;
 	$string = $app['companyReview']->addNewReview($review);
 	return new Response($string);
-});
-
-
-//This is just a test route, please ingore it
-$app->get('/test', function() use ($app){
-	return new \Symfony\Component\HttpFoundation\Response("This is a test page, for test purpose only.");
 });
 
 $app->run();

@@ -46,6 +46,8 @@ class CompanyReview{
 	public function getCompanyAverageRatings($ratings){
 
 		$total=count($ratings);
+		$culture=$management=$work_live_balance=$career_development=0;
+
 		foreach($ratings as $rating){
 			$culture += $rating['culture'];
 		    $management += $rating['management'];
@@ -82,7 +84,6 @@ class CompanyReview{
 	}
 
 	public function addNewReview($review){
-var_dump($review);die;
 		return json_encode($review);
 	}
 
