@@ -16,6 +16,11 @@ $app->get('/avgRatings', function() use ($app){
 	return new Response($file);
 });
 
+$app->get('/company/{string}', function($string) use ($app){
+	$string = $app['companyReview']->getCompany($string);
+	return new Response($string);
+});
+
 //This is just a test route, please ingore it
 $app->get('/test', function() use ($app){
 	return new \Symfony\Component\HttpFoundation\Response("This is a test page, for test purpose only.");

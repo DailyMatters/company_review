@@ -28,7 +28,7 @@ class CompanyReview{
 		foreach($companies as $company){
 			$ratings[] = $this->getCompanyRatings($company);
 			$avgRatings = $this->getCompanyAverageRatings($ratings);
-			$fullRating = array('name'=>$company['name'], 'AverageRatings'=>$avgRatings);
+			$fullRating = array('name'=>$company['name'], 'slug'=>$company['slug'], 'AverageRatings'=>$avgRatings);
 			$companiesRatings[]=$fullRating;
 
 		}
@@ -59,6 +59,26 @@ class CompanyReview{
 		$avgCareer_dev = $career_development/$total;
 
 		return array('culture'=>$avgCulture, 'management'=>$avgManagement, 'work_live_balance'=>$avgWork_live, 'career_development'=>$avgCareer_dev);
+	}
+
+	public function getCompany($companySlug){
+	
+		$companies=$this->getAllCompanies();
+
+		foreach($companies as $company){
+			if($company['slug'] == $companySlug){
+			return $this->returnCompanyData($company);
+			}
+		}	
+		return 'Company Not Found.';
+	}
+
+
+	public function returnCompanyData($company){
+
+		//filter company information and return it in json format
+		$data = array('name'=>$company['name'], 'city'=>$company['city'], 'reviews'=>$company['reviews']);
+		return json_encode($data);
 	}
 
 }
