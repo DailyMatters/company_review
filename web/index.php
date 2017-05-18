@@ -23,9 +23,8 @@ $app->get('/company/{string}', function($string) use ($app){
 
 $app->post('/review', function(Request $request) use ($app){
 
-	$company = $request->get('company');
-
-	$string = $app['companyReview']->getCompany($company);
+	$review = $request->request->all();
+	$string = $app['companyReview']->addNewReview($review);
 	return new Response($string);
 });
 

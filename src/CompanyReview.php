@@ -81,4 +81,9 @@ class CompanyReview{
 		return json_encode($data);
 	}
 
+	public function addNewReview($review){
+var_dump($review);die;
+		return json_encode($review);
+	}
+
 }
