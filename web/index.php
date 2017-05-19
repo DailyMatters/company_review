@@ -23,18 +23,17 @@ $app->get('/company/{string}', function($string) use ($app){
 	return new Response($string);
 });
 
+//The endpoint for the 'users who reviewed this also reviewed' functionality
+$app->get('/moreReviews/{string}', function($string) use ($app){
+	$string = $app['companyReview']->getMoreReviews($string);
+	return new Response($string);
+});
 
 //This endpoint is not working yet
 $app->post('/review', function(Request $request) use ($app){
 
 	$review = $request->request->get("review");
 	$string = $app['companyReview']->addNewReview($review);
-	return new Response($string);
-});
-
-//The endpoint for the 'users who reviewed this also reviewed' functionality
-$app->get('/moreReviews/{string}', function($string) use ($app){
-	$string = $app['companyReview']->getMoreReviews($string);
 	return new Response($string);
 });
 
