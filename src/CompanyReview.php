@@ -97,11 +97,18 @@ class CompanyReview{
 
 	public function getMoreReviews($companySlug){
 		
-		$reviewers = getCompanyReviewers($companySlug);
-		//don't forget to check if empty
+		$reviewers = $this->getCompanyReviewers($companySlug);
+		
+		if($reviewers == "Company Not Found."){
+			return $reviewers;
+		}
 
-		$companies = getCompaniesReviewedByUsers($reviewers);
-		return $companies;
+		if(!empty($reviewers)){
+			$companies = $this->getCompaniesReviewedByUsers($reviewers);
+			$companies = array_unique($companies);
+			return json_encode($companies);
+		}
+		return "This company has no reviews yet.";
 	}
 
 	public function getCompanyReviewers($companySlug){
@@ -110,7 +117,7 @@ class CompanyReview{
 
 		foreach($companies as $company){
 			if($company['slug'] == $companySlug){
-			return $reviewers = $this->getArrayReviewers($company);
+				return $reviewers = $this->getArrayReviewers($company);
 			}
 		}
 		return 'Company Not Found.';
@@ -142,5 +149,4 @@ class CompanyReview{
 		}
 		return false;
 	}
-
 }
