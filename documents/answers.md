@@ -23,4 +23,4 @@ At this point, the main selling point of maintainability of my code is the fact 
 
 * What would be your preferred storage for solving a problem like this in a production environment and why? What would be the alternatives?
 
-It depends on the amount of data we are expecting. But for a problem like this that expects a lot of data, then a non relational database would be the ideal storage method. I say this because nosql is the preferred method for highly dynamic, big datasets, as a review system can actually be.
+It depends on the amount of data we are expecting. But for a problem like this that expects a lot of data, then a non relational database would be the ideal storage method. I say this because nosql is a preferred method for highly dynamic datasets, as a review system can actually be.
